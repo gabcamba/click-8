@@ -14,11 +14,11 @@ export const Card: React.FC<CardProps> = ({
   firstClickedAt,
   onClick,
 }) => {
-  const rotation = useMemo(() => Math.random() * 15 - 5, []);
+  const rotation = useMemo(() => Math.random() * 10 - 5, []);
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const offsetY = useMemo(() => Math.random() * 60 - 10, []);
-  const offsetX = useMemo(() => Math.random() * 40 - 10, []);
+  const offsetY = useMemo(() => Math.random() * 40 - 10, []);
+  const offsetX = useMemo(() => Math.random() * 20 - 10, []);
 
   const handleClick = () => {
     setPressed(true);
@@ -26,7 +26,7 @@ export const Card: React.FC<CardProps> = ({
     onClick(id);
   };
 
-  const scale = pressed ? 0.9 : hovered ? 1.2 : 1;
+  const scale = pressed ? 0.9 : hovered ? 1.1 : 1;
 
   return (
     <div
@@ -41,6 +41,10 @@ export const Card: React.FC<CardProps> = ({
           rotate(${hovered ? 0 : rotation}deg)
           scale(${scale})
         `,
+        zIndex: hovered ? 10 : 1,
+        boxShadow: hovered
+          ? "0 10px 25px rgba(0, 0, 0, 0.2)"
+          : "0 4px 12px rgba(0, 0, 0, 0.1)",
       }}
     >
       <h1>{id}</h1>
