@@ -17,7 +17,8 @@ export const Card: React.FC<CardProps> = ({
   const rotation = useMemo(() => Math.random() * 15 - 5, []);
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const offsetY = useMemo(() => Math.random() * 30 - 10, []);
+  const offsetY = useMemo(() => Math.random() * 60 - 10, []);
+  const offsetX = useMemo(() => Math.random() * 40 - 10, []);
 
   const handleClick = () => {
     setPressed(true);
@@ -36,6 +37,7 @@ export const Card: React.FC<CardProps> = ({
       style={{
         transform: `
           translateY(${offsetY}px)
+          translateX(${offsetX}px)
           rotate(${hovered ? 0 : rotation}deg)
           scale(${scale})
         `,

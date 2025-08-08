@@ -1,5 +1,5 @@
 import { Card } from "./Card";
-
+import styles from "./CardGrid.module.css";
 type CardData = {
   id: number;
   clickCount: number;
@@ -12,17 +12,7 @@ type CardGridProps = {
 
 const CardGrid = ({ cards }: CardGridProps) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gap: "1rem",
-        width: "100%",
-        margin: "0 auto",
-        padding: "1rem",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className={styles.cardGrid}>
       {cards.map((card) => (
         <Card
           onClick={() => console.log(card.id)}
