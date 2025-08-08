@@ -1,0 +1,10 @@
+.card {
+  min-width: 0;
+  cursor: pointer;
+  background-color: cornflowerblue;
+  border-radius: 15px;
+  height: 300px;
+  max-width: 170px;
+  transition: transform 0.15s ease-in;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

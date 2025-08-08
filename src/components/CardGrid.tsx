@@ -18,7 +18,6 @@ const CardGrid = ({ cards }: CardGridProps) => {
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "1rem",
         width: "100%",
-        maxWidth: "800px",
         margin: "0 auto",
         padding: "1rem",
         boxSizing: "border-box",
