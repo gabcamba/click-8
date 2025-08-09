@@ -1,25 +1,22 @@
+import type { CardData } from "../types/Card";
 import { Card } from "./Card";
 import styles from "./CardGrid.module.css";
-type CardData = {
-  id: number;
-  clickCount: number;
-  firstClickedAt: string | null;
-};
 
 type CardGridProps = {
   cards: CardData[];
+  handleClick: (id: number) => void;
 };
 
-const CardGrid = ({ cards }: CardGridProps) => {
+const CardGrid = ({ cards, handleClick }: CardGridProps) => {
   return (
     <div className={styles.cardGrid}>
       {cards.map((card) => (
         <Card
-          onClick={() => console.log(card.id)}
+          onClick={() => handleClick(card.id)}
           key={card.id}
           id={card.id}
-          clicks={card.clickCount}
-          firstClickedAt={card.firstClickedAt}
+          clicks={card.clicks}
+          firstClickedAt={card.first_clicked_at}
         />
       ))}
     </div>
