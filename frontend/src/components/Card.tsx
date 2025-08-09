@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import styles from "./Card.module.css";
+import { formatDate } from "../utils/dateUtils";
 
 type CardProps = {
   id: number;
@@ -49,7 +50,7 @@ export const Card: React.FC<CardProps> = ({
     >
       <h1>{id}</h1>
       <p>Clicks: {clicks}</p>
-      <p>First Click: {firstClickedAt ?? "—"}</p>
+      <p>First Click: {formatDate(firstClickedAt) ?? "—"}</p>
     </div>
   );
 };
