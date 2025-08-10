@@ -15,8 +15,11 @@ import {
   type SortOrder,
 } from "./constants/constants";
 
+type Theme = "light" | "dark";
+
 function App() {
   const [cards, setCards] = useState<CardData[]>([]);
+  const [theme, setTheme] = useState<Theme>("light");
 
   const fetchCards = async (sort?: SortField, order?: SortOrder) => {
     try {
@@ -75,6 +78,26 @@ function App() {
     // fetch cards by first clicked time stamp
   }, []);
 
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as Theme | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark-mode");
+    } else {
+      root.classList.remove("dark-mode");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
   return (
     <>
       <div className="btn-container">
@@ -83,6 +106,9 @@ function App() {
             {btn.label}
           </button>
         ))}
+        <button className={styles.button} onClick={toggleTheme}>
+          {theme === "light" ? "light" : "dark"}
+        </button>
       </div>
       <CardGrid cards={cards} handleClick={handleClick} />
     </>
