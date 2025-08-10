@@ -27,7 +27,7 @@ export const Card: React.FC<CardProps> = ({
     onClick(id);
   };
 
-  const scale = pressed ? 0.9 : hovered ? 1.2 : 1;
+  const scale = pressed ? 0.9 : hovered ? 1.03 : 1;
 
   return (
     <div
@@ -37,9 +37,6 @@ export const Card: React.FC<CardProps> = ({
       onMouseLeave={() => setHovered(false)}
       style={{
         transform: `
-          translateY(${hovered ? offsetY : 0}px)
-          translateX(${hovered ? offsetX : 0}px)
-          rotate(${!hovered ? 0 : rotation}deg)
           scale(${scale})
         `,
         zIndex: hovered ? 10 : 1,
@@ -50,7 +47,7 @@ export const Card: React.FC<CardProps> = ({
     >
       <h1>{id}</h1>
       <p>clicks: {clicks}</p>
-      <p>first click:</p>
+      <h6>first click:</h6>
       <p style={{ whiteSpace: "pre-line" }}>
         {formatDate(firstClickedAt) ?? "—"}
       </p>
