@@ -17,11 +17,14 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const [animateClicks, setAnimateClicks] = useState(false);
 
   const handleClick = () => {
     setPressed(true);
     setTimeout(() => setPressed(false), 100);
     onClick(id);
+    setAnimateClicks(true);
+    setTimeout(() => setAnimateClicks(false), 300);
   };
 
   const scale = pressed ? 0.9 : hovered ? 1.03 : 1;
@@ -43,11 +46,14 @@ export const Card: React.FC<CardProps> = ({
       }}
     >
       <h1>{id}</h1>
-      <p>clicks: {clicks}</p>
-      <h6>first click:</h6>
-      <p style={{ whiteSpace: "pre-line" }}>
-        {formatDate(first_clicked_at) ?? "—"}
-      </p>
+      <div>
+        <h6>clicks:</h6>
+        <h2 className={animateClicks ? styles.clicksAnimate : ""}>{clicks}</h2>
+        <h6>first clicked:</h6>
+        <h6 style={{ whiteSpace: "pre-line" }}>
+          {formatDate(first_clicked_at) ?? "—"}
+        </h6>
+      </div>
     </div>
   );
 };
