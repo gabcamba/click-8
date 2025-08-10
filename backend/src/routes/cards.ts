@@ -1,12 +1,28 @@
-const { Router } = require("express");
+import { Router, Request, Response } from "express";
 import { pool } from "../db";
 
 const router = Router();
 
 // GET all cards
-router.get("/", async (req: any, res:any) => {
+router.get("/", async (req: Request, res: Response) => {
   try {
-    const result = await pool.query("SELECT * FROM cards ORDER BY id ASC");
+    const sort = (req.query.sort as string) || "id";
+    const order = (req.query.order as string) || "asc";
+
+    const validSortFields = ["id", "clicks", "first_clicked_at"];
+    const validOrders = ["asc", "desc"];
+
+    if (!validSortFields.includes(sort) || !validOrders.includes(order)) {
+      return res.status(400).json({ error: "Invalid sort or order value" });
+    }
+
+    let orderBy = `${sort} ${order}`;
+    if (sort !== "id") {
+      orderBy += `, id ASC`;
+    }
+
+    const result = await pool.query(`SELECT * FROM cards ORDER BY ${orderBy}`);
+
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -15,7 +31,7 @@ router.get("/", async (req: any, res:any) => {
 });
 
 // POST click a card
-router.post("/:id/click", async (req: any, res:any) => {
+router.post("/:id/click", async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     await pool.query(
@@ -36,7 +52,7 @@ router.post("/:id/click", async (req: any, res:any) => {
 });
 
 // POST reset cards
-router.post("/reset", async (req: any, res:any) => {
+router.post("/reset", async (_req, res: Response) => {
   try {
     await pool.query("UPDATE cards SET clicks = 0, first_clicked_at = NULL");
     res.json({ message: "Cards reset" });
