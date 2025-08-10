@@ -2,25 +2,37 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color-scheme: light;
+  color: light-dark(#213547, rgba(255, 255, 255, 0.87));
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  --bg-image: url("https://images.unsplash.com/photo-1706523869158-8fcf6ad998ad?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 
-  background-image: url("https://images.unsplash.com/photo-1706523869158-8fcf6ad998ad?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  transition: background-image 0.9s ease-in-out;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  transition: background-image 0.9s ease-in-out, background-color 0.3s ease,
+    color 0.3s ease;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root.dark-mode {
+  color-scheme: dark;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: light-dark(#646cff, #9ca3ff);
   text-decoration: inherit;
+  transition: color 0.3s ease;
 }
+
 a:hover {
-  color: #535bf2;
+  color: light-dark(#535bf2, #b3b9ff);
 }
 
 body {
@@ -29,36 +41,58 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: light-dark(rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  z-index: -1;
+  pointer-events: none;
+  transition: background 0.3s ease;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: light-dark(#213547, #ffffff);
+  text-shadow: light-dark(none, 0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 button {
   border-radius: 800px;
-  border: 1px solid transparent;
+  border: 1px solid light-dark(transparent, rgba(255, 255, 255, 0.2));
   padding: 0.6em 1.2em;
   font-size: 1em;
-  font-weight: 5700;
+  font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: white;
+  transition: all 0.3s ease;
+  background-color: light-dark(rgba(249, 249, 249, 0.9), rgba(51, 51, 51, 0.9));
+  color: light-dark(#213547, #ffffff);
+  backdrop-filter: blur(10px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover {
+  border-color: light-dark(#646cff, #ffffff);
+  background-color: light-dark(
+    rgba(233, 233, 233, 0.95),
+    rgba(68, 68, 68, 0.95)
+  );
+
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+}
+
+button:active {
+  transform: translateY(-2px);
+}
+
+h6,p, h2, h5 {
+  margin: 0;
 }

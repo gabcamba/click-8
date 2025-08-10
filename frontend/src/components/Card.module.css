@@ -1,15 +1,27 @@
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
   cursor: pointer;
-  min-width: 150px;
+  min-width: 120px;
+  min-height: 270px;
   background: rgba(255, 255, 255, 0.18);
   border-radius: 25px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.9px);
   -webkit-backdrop-filter: blur(8.9px);
   border: 1px solid rgba(255, 255, 255, 0.46);
-  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  transition: box-shadow 0.3s ease, transform 0.15s ease,
+    background-color 0.4s ease;
 }
 
+.card:hover {
+  background-color: light-dark(
+    rgba(233, 233, 233, 0.521),
+    rgba(0, 0, 0, 0.193)
+  );
+}
 @media (max-width: 768px) {
   .card {
     min-width: 0;
@@ -19,5 +31,29 @@
 @media (max-width: 480px) {
   .card {
     min-width: 0;
+  }
+}
+
+.clicksAnimate {
+  animation: pop 0.45s ease-out;
+  font-weight: bold;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+    color: inherit;
+  }
+  30% {
+    transform: scale(1.4);
+    color: limegreen;
+  }
+  60% {
+    transform: scale(1.2);
+    color: limegreen;
+  }
+  100% {
+    transform: scale(1);
+    color: inherit;
   }
 }
