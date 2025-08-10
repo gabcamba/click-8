@@ -1,6 +1,7 @@
 import type { CardData } from "../types/Card";
 import { Card } from "./Card";
 import styles from "./CardGrid.module.css";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 type CardGridProps = {
   cards: CardData[];
@@ -8,8 +9,10 @@ type CardGridProps = {
 };
 
 const CardGrid = ({ cards, handleClick }: CardGridProps) => {
+  const [parent] = useAutoAnimate()
+
   return (
-    <div className={styles.cardGrid}>
+    <div ref={parent} className={styles.cardGrid}>
       {cards.map((card) => (
         <Card
           onClick={() => handleClick(card.id)}
