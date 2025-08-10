@@ -19,7 +19,7 @@ const CardGrid = ({ cards, handleClick }: CardGridProps) => {
           key={card.id}
           id={card.id}
           clicks={card.clicks}
-          firstClickedAt={card.first_clicked_at}
+          first_clicked_at={card.first_clicked_at}
         />
       ))}
     </div>

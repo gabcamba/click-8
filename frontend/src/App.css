@@ -2,3 +2,12 @@
   margin: 0 auto;
   text-align: center;
 }
+
+.btn-container {
+  margin-bottom: 2rem;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
