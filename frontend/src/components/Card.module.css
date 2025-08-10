@@ -1,14 +1,13 @@
 .card {
   cursor: pointer;
   min-width: 150px;
-  transition: transform 0.15s ease-in;
-
   background: rgba(255, 255, 255, 0.18);
   border-radius: 25px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.9px);
   -webkit-backdrop-filter: blur(8.9px);
   border: 1px solid rgba(255, 255, 255, 0.46);
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
 }
 
 @media (max-width: 768px) {
