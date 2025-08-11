@@ -1,9 +1,9 @@
 export function formatDate(dateString: string | null): string {
-  if (!dateString) return "-";
+  if (!dateString) return "--";
   const date = new Date(dateString);
   const dateStr = date.toLocaleString("en-US", {
     year: "2-digit",
-    month: "numeric",
+    month: "short",
     day: "numeric",
   });
   const timeStr = date.toLocaleString("en-US", {
