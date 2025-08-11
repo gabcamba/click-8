@@ -7,7 +7,7 @@
   cursor: pointer;
   min-width: 120px;
   min-height: 210px;
-  background: rgba(255, 255, 255, 0.18);
+  background: light-dark(rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.193));
   border-radius: 25px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.9px);
@@ -19,8 +19,8 @@
 
 .card:hover {
   background-color: light-dark(
-    rgba(233, 233, 233, 0.521),
-    rgba(0, 0, 0, 0.193)
+    rgba(255, 255, 255, 0.475),
+    rgba(255, 255, 255, 0.263)
   );
 }
 @media (max-width: 768px) {
@@ -47,11 +47,13 @@
   }
   30% {
     transform: scale(1.4);
-    color: limegreen;
+    color: rgb(115, 223, 115);
+    color: light-dark(rgb(38, 146, 38), rgb(115, 223, 115));
   }
   60% {
     transform: scale(1.2);
-    color: limegreen;
+    color: light-dark(limegreen, rgb(115, 223, 115));
+    color: light-dark(rgb(38, 146, 38), rgb(115, 223, 115));
   }
   100% {
     transform: scale(1);
