@@ -98,6 +98,28 @@ PostgreSQL → Host: localhost, Port: 5433 (mapped to container’s 5432)
 └── ...
 ```
 
+## Database Schema
+
+The PostgreSQL database contains a single table that tracks card data:
+
+```sql
+CREATE TABLE IF NOT EXISTS cards (
+    id SERIAL PRIMARY KEY,
+    clicks INT DEFAULT 0,
+    first_clicked_at TIMESTAMP
+);
+
+-- Insert 8 cards with default values (clicks = 0, first_clicked_at = NULL)
+INSERT INTO cards (clicks)
+SELECT 0
+FROM generate_series(1, 8);
+```
+
+-- Seed with 8 cards (IDs 1-8), all with 0 clicks
+INSERT INTO cards (clicks)
+SELECT 0
+FROM generate_series(1, 8);
+
 ## API Endpoints
 
 | Method | Endpoint               | Description                                       |
@@ -117,7 +139,8 @@ PostgreSQL → Host: localhost, Port: 5433 (mapped to container’s 5432)
 
 #### New / Challenging
 
-- Docker setup (I have little to no experience working with Docker, although it was really fun trying to make it work!)
+- Docker setup (I have little to no experience working with Docker, it was really fun trying to make it work :))
+- Figuring out how to seed initial data
 
 #### Design / Implementation Decisions
 
