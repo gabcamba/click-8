@@ -5,12 +5,7 @@
   color-scheme: light;
   color: light-dark(#213547, rgba(255, 255, 255, 0.87));
 
-  --bg-image: url("https://images.unsplash.com/photo-1706523869158-8fcf6ad998ad?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-
-  background-image: var(--bg-image);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
 
   transition: background-image 0.9s ease-in-out, background-color 0.3s ease,
     color 0.3s ease;
@@ -93,6 +88,10 @@ button:active {
   transform: translateY(-2px);
 }
 
-h6,p, h2, h5, h1 {
+h6,
+p,
+h2,
+h5,
+h1 {
   margin: 0;
 }
