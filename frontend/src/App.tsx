@@ -14,6 +14,7 @@ import {
   type SortField,
   type SortOrder,
 } from "./constants/constants";
+import { MoonStar, Sun } from "lucide-react";
 
 type Theme = "light" | "dark";
 
@@ -74,6 +75,10 @@ function App() {
       label: "sort by first click date",
       onClick: () => handleSort(FIRST_CLICKED_AT, ASC),
     },
+    {
+      label: theme === "light" ? <Sun /> : <MoonStar />,
+      onClick: () => toggleTheme(),
+    },
   ];
 
   useEffect(() => {
@@ -109,9 +114,6 @@ function App() {
             {btn.label}
           </button>
         ))}
-        <button className={styles.button} onClick={toggleTheme}>
-          {theme === "light" ? "light" : "dark"}
-        </button>
       </div>
       <CardGrid cards={cards} handleClick={handleClick} />
     </>

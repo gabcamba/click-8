@@ -1,8 +1,7 @@
 .card {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 1rem;
   cursor: pointer;
   min-width: 120px;
@@ -22,17 +21,6 @@
     rgba(255, 255, 255, 0.475),
     rgba(255, 255, 255, 0.263)
   );
-}
-@media (max-width: 768px) {
-  .card {
-    min-width: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .card {
-    min-width: 0;
-  }
 }
 
 .clicksAnimate {
@@ -58,5 +46,43 @@
   100% {
     transform: scale(1);
     color: inherit;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.detailContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detailText {
+  white-space: pre-line;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .card {
+    min-width: 0;
+    gap: 1rem;
+  }
+
+  .detailContainer {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-width: 0;
+    gap: 1rem;
+  }
+  .detailContainer {
+    gap: 0.5rem;
   }
 }
