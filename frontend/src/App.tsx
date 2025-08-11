@@ -19,7 +19,10 @@ type Theme = "light" | "dark";
 
 function App() {
   const [cards, setCards] = useState<CardData[]>([]);
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem("theme") as Theme | null;
+    return savedTheme ?? "light";
+  });
 
   const fetchCards = async (sort?: SortField, order?: SortOrder) => {
     try {
