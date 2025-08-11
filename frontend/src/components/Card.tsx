@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./Card.module.css";
 import { formatDate } from "../utils/dateUtils";
+import { Calendar1, MousePointerClick } from "lucide-react";
 
 type CardProps = {
   id: number;
@@ -26,11 +27,20 @@ export const Card: React.FC<CardProps> = ({
     setAnimateClicks(true);
     setTimeout(() => setAnimateClicks(false), 300);
   };
+  
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleClick();
+    }
+  };
 
   const scale = pressed ? 0.9 : hovered ? 1.03 : 1;
 
   return (
     <div
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
       className={styles.card}
       onClick={handleClick}
       onMouseEnter={() => setHovered(true)}
@@ -46,13 +56,19 @@ export const Card: React.FC<CardProps> = ({
       }}
     >
       <h1>{id}</h1>
-      <div>
-        <h6>clicks:</h6>
-        <h2 className={animateClicks ? styles.clicksAnimate : ""}>{clicks}</h2>
-        <h6>first clicked:</h6>
-        <h6 style={{ whiteSpace: "pre-line" }}>
-          {formatDate(first_clicked_at) ?? "—"}
-        </h6>
+      <div className={styles.details}>
+        <div title="total number of clicks" className={styles.detailContainer}>
+          <MousePointerClick />
+          <h4
+            className={animateClicks ? styles.clicksAnimate : styles.detailText}
+          >
+            {`${clicks} click${clicks !== 1 ? "s" : ""}`}
+          </h4>
+        </div>
+        <div title="first clicked date" className={styles.detailContainer}>
+          <Calendar1 size={24} />
+          <h5 className={styles.detailText}>{formatDate(first_clicked_at)}</h5>
+        </div>
       </div>
     </div>
   );
