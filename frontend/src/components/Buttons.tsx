@@ -30,7 +30,7 @@ export const Buttons = ({
       onClick: () => onSort(FIRST_CLICKED_AT, ASC),
     },
     {
-      label: theme === "light" ? <Sun /> : <MoonStar />,
+      label: theme === "light" ? <MoonStar /> : <Sun />,
       onClick: onToggleTheme,
     },
   ];
