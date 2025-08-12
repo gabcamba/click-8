@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Card.module.css";
 import { formatDate } from "../utils/dateUtils";
-import { Calendar1, MousePointerClick } from "lucide-react";
+import { Clock, MousePointerClick } from "lucide-react";
 
 type CardProps = {
   id: number;
@@ -55,10 +55,10 @@ export const Card: React.FC<CardProps> = ({
           : "0 4px 12px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <h1>{id}</h1>
+      <h1 className={styles.cardId}>{id}</h1>
       <div className={styles.details}>
         <div title="total number of clicks" className={styles.detailContainer}>
-          <MousePointerClick />
+          <MousePointerClick className={`${styles.clickIcon} ${styles.icon}`} size={18}/>
           <h4
             className={animateClicks ? styles.clicksAnimate : styles.detailText}
           >
@@ -66,7 +66,7 @@ export const Card: React.FC<CardProps> = ({
           </h4>
         </div>
         <div title="first clicked date" className={styles.detailContainer}>
-          <Calendar1 size={24} />
+          <Clock className={`${styles.calendarIcon} ${styles.icon}`} size={18}  />
           <h5 className={styles.detailText}>{formatDate(first_clicked_at)}</h5>
         </div>
       </div>
