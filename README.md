@@ -21,7 +21,7 @@ The app runs fully Dockerized — one command to spin up the entire stack.
   - Resets cards to original order (1–8).
   - Clears all click counts and timestamps.
   - Updates both UI and database.
-- **Dockerized Setup** – Launch with `docker-compose up`.
+- **Dockerized Setup** – Launch with `docker compose up`.
 
 ---
 
@@ -60,7 +60,7 @@ cd click-8
 ### Run the app
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 This will:
